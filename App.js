@@ -68,13 +68,13 @@ switch(input){
     case '9':
 
         this.setState({
-            displayValue: (displayValue == '0')? input : displayValue + input
+
+            displayValue: (displayValue == '0')? input :( (displayValue =='Infinity') ? input : displayValue + input)
 
         })
 
         if(!nextValue){
             this.setState({
-
                 firstValue: firstValue + input
             })
 
@@ -125,10 +125,11 @@ switch(input){
         if(secondValue=='' || operator==null)
             result=firstValue
         else
+
             result = eval(firstValue + realOperator + secondValue);
         this.setState({
             displayValue: result,
-            firstValue:result,
+            firstValue: (result == 'Infinity'? 0 : result),
             secondValue:'',
             operator:null,
             nextValue:false
